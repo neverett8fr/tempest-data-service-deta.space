@@ -31,8 +31,12 @@ func storageResponseToApplicationResponse(queryAllItems queryBodyReponse) ([]app
 	return resp, nil
 }
 
+type postNewItem struct {
+	Item application.File `json:"item"`
+}
+
 type queryParams struct {
-	User string `json:"user"`
+	User string `json:"username"`
 }
 
 type queryAllItems struct {

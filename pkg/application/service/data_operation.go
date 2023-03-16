@@ -61,6 +61,8 @@ func userFileUploadSmall(w http.ResponseWriter, r *http.Request) {
 		r.Context(),
 		usr,
 		fileData.Metadata.Name,
+		fileData.Metadata.Extension,
+		fileData.Metadata.Size,
 		fileData.Data,
 	)
 	if err != nil {

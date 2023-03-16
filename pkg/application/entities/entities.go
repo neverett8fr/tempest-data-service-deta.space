@@ -3,7 +3,7 @@ package application
 type FileMetadata struct {
 	Extension string `json:"extension"`
 	Name      string `json:"name"`
-	Size      int64  `json:"size"`
+	Size      int    `json:"size"`
 }
 
 type File struct {

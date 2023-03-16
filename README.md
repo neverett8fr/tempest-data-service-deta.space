@@ -10,7 +10,7 @@ this might be temporary
 ```json
 {
     "key": "uuid",
-    "user": "user1",
+    "username": "user1",
     "metadata": {
         "extension": "txt",
         "name": "FileName",
@@ -24,7 +24,7 @@ this might be temporary
 {
     "item": {
         "key": "newUUID3",
-        "user": "username2",
+        "username": "username2",
         "metadata":{
             "extension": "txt",
             "name":"file1",
