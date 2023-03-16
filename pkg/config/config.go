@@ -17,22 +17,15 @@ type Service struct {
 	Port int    `yaml:"port"`
 }
 
-type DB struct {
-	Driver   string `yaml:"driver"`
-	Username string `yaml:"username"`
-	Password string `yaml:"password"`
-	Host     string `yaml:"host"`
-	Port     int    `yaml:"port"`
-	Name     string `yaml:"name"`
-}
-
 type Storage struct {
-	BucketName string `yaml:"bucket-name"`
+	APIURLBase   string `yaml:"api-url-base"`
+	ProjectName  string `yaml:"project-name"`
+	DatabaseName string `yaml:"database-name"`
+	DatabaseKey  string `yaml:"database-key"`
 }
 
 type Config struct {
 	Service Service `yaml:"data-service-config"`
-	DB      DB      `yaml:"data-db-config"`
 	Storage Storage `yaml:"cloud-storage-config"`
 }
 

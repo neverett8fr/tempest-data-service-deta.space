@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -30,7 +31,7 @@ func userFileDownloadSmall(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	body := application.NewResponse(string(fileContent))
+	body := application.NewResponse(fmt.Sprintf("%s", fileContent))
 	writeReponse(w, body)
 
 }
@@ -47,7 +48,7 @@ func userFileUploadSmall(w http.ResponseWriter, r *http.Request) {
 		writeReponse(w, body)
 		return
 	}
-	fileData := application.FileData{}
+	fileData := application.File{}
 	err = json.Unmarshal(bodyIn, &fileData)
 	if err != nil {
 		body := application.NewResponse(nil, err)
@@ -59,8 +60,8 @@ func userFileUploadSmall(w http.ResponseWriter, r *http.Request) {
 	err = StorageProvider.UploadSmallFile(
 		r.Context(),
 		usr,
-		fileData.FileName,
-		[]byte(fileData.FileContent),
+		fileData.Metadata.Name,
+		fileData.Data,
 	)
 	if err != nil {
 		body := application.NewResponse(nil, err)

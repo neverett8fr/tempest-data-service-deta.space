@@ -20,7 +20,7 @@ func userFileNames(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	usr := params[username]
 
-	fileNames, err := StorageProvider.GetFileInformation(r.Context(), usr)
+	fileNames, err := StorageProvider.GetAllFileInformation(r.Context(), usr)
 	if err != nil {
 		body := application.NewResponse(nil, err)
 		writeReponse(w, body)

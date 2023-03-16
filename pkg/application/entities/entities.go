@@ -1,8 +1,16 @@
 package application
 
-type FileData struct {
-	FileName    string `json:"file_name"`
-	FileContent string `json:"file_content"`
+type FileMetadata struct {
+	Extension string `json:"extension"`
+	Name      string `json:"name"`
+	Size      int64  `json:"size"`
+}
+
+type File struct {
+	Key      string       `json:"key"`
+	User     string       `json:"username"`
+	Metadata FileMetadata `json:"metadata"`
+	Data     interface{}  `json:"data"`
 }
 
 type Response struct {

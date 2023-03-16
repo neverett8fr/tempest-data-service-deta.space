@@ -25,7 +25,10 @@ const (
 func NewServiceRoutes(r *mux.Router, conf config.Config) {
 	sp, err := st.InitialiseStorageProvider(
 		context.Background(),
-		conf.Storage.BucketName,
+		conf.Storage.APIURLBase,
+		conf.Storage.ProjectName,
+		conf.Storage.DatabaseName,
+		conf.Storage.DatabaseKey,
 	)
 	if err != nil {
 		log.Printf("error initialising storage provider, err %v", err)

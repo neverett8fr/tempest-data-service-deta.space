@@ -1,7 +1,48 @@
 package storage
 
-type FileInformation struct {
-	Name string `json:"name"`
-	Ext  string `json:"extension"`
-	Size int64  `json:"size"`
+import (
+	"fmt"
+
+	application "tempest-data-service-deta.space/pkg/application/entities"
+)
+
+type queryBodyReponse struct {
+	Items []application.File `json:"items"`
+}
+
+func storageResponseToApplicationResponse(queryAllItems queryBodyReponse) ([]application.File, error) {
+
+	if len(queryAllItems.Items) == 0 {
+		return []application.File{}, fmt.Errorf("could not convert response, empty")
+	}
+
+	resp := []application.File{}
+	for _, val := range queryAllItems.Items {
+		resp = append(resp,
+			application.File{
+				Key:      val.Key,
+				User:     val.User,
+				Metadata: val.Metadata,
+				Data:     val.Data,
+			},
+		)
+	}
+
+	return resp, nil
+}
+
+type queryParams struct {
+	User string `json:"user"`
+}
+
+type queryAllItems struct {
+	Query []queryParams `json:"query"`
+}
+
+func newQueryAllItems(param queryParams) queryAllItems {
+	return queryAllItems{
+		Query: []queryParams{
+			param,
+		},
+	}
 }
