@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"tempest-user-service/pkg/config"
 	"time"
+
+	"tempest-data-service-deta.space/pkg/config"
 
 	"github.com/gorilla/mux"
 )

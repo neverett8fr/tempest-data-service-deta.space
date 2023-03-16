@@ -1,4 +1,4 @@
-module tempest-user-service
+module tempest-data-service-deta.space
 
 go 1.18
 

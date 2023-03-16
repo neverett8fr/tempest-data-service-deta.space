@@ -3,10 +3,11 @@ package cmd
 import (
 	"database/sql"
 	"fmt"
-	"tempest-user-service/pkg/config"
 
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
+
+	"tempest-data-service-deta.space/pkg/config"
 
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 	_ "github.com/lib/pq"
