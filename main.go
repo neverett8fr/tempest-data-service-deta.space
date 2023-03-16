@@ -2,17 +2,18 @@ package main
 
 import (
 	"log"
-	"tempest-user-service/cmd"
-	application "tempest-user-service/pkg/application/service"
-	"tempest-user-service/pkg/config"
+
+	"tempest-data-service-deta.space/cmd"
+	application "tempest-data-service-deta.space/pkg/application/service"
+	"tempest-data-service-deta.space/pkg/config"
 
 	"github.com/gorilla/mux"
 )
 
 // Route declaration
-func getRoutes() *mux.Router {
+func getRoutes(conf config.Config) *mux.Router {
 	r := mux.NewRouter()
-	application.NewUserInformation(r)
+	application.NewServiceRoutes(r, conf)
 
 	return r
 }
@@ -26,22 +27,22 @@ func main() {
 	}
 	log.Println("config initialised")
 
-	serviceDB, err := cmd.OpenDB(&conf.DB)
-	if err != nil {
-		log.Fatalf("error starting db, err %v", err)
-		return
-	}
-	defer serviceDB.Close()
-	log.Println("connection to DB setup")
+	// serviceDB, err := cmd.OpenDB(&conf.DB)
+	// if err != nil {
+	// 	log.Fatalf("error starting db, err %v", err)
+	// 	return
+	// }
+	// defer serviceDB.Close()
+	// log.Println("connection to DB setup")
 
-	err = cmd.MigrateDB(serviceDB, conf.DB.Driver)
-	if err != nil {
-		log.Fatalf("error running DB migrations, %v", err)
-		return
-	}
-	log.Println("DB migrations ran")
+	// err = cmd.MigrateDB(serviceDB, conf.DB.Driver)
+	// if err != nil {
+	// 	log.Fatalf("error running DB migrations, %v", err)
+	// 	return
+	// }
+	// log.Println("DB migrations ran")
 
-	router := getRoutes()
+	router := getRoutes(*conf)
 	log.Println("API routes retrieved")
 
 	err = cmd.StartServer(&conf.Service, router)
