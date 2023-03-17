@@ -2,7 +2,6 @@ package service
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -31,7 +30,7 @@ func userFileDownloadSmall(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	body := application.NewResponse(fmt.Sprintf("%s", fileContent))
+	body := application.NewResponse(fileContent)
 	writeReponse(w, body)
 
 }
